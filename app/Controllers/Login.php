@@ -26,6 +26,20 @@ class Login extends Controller
         echo json_encode($autenticado);
     }
 
+    public function cadastrar()
+    {   
+        return view('vw_cadastro');
+    }
+
+    public function cadastrarUsuario(): void
+    {
+        $req = $this->request->getPost();
+
+        $res = $this->LoginModel->cadastrarUsuario($req);
+
+        echo json_encode($res);
+    }
+
     public function logout()
     {
         session()->destroy();

@@ -9,8 +9,25 @@
         <form id="form">
             <div class="row">
                 <div class="col">
-                    <label for="email" style="display: block; text-align: center;">Email</label>
+                    <label for="nome" style="display: block; text-align: center;">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="email" style="display: block; text-align: center;">E-mail</label>
                     <input type="text" class="form-control" id="email" name="email" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="email" style="display: block; text-align: center;">Tipo</label>
+                    <select name="tipoCadastro" id="tipoCadastro" class="form-control">
+                        <option value="coletor">Coletor</option>
+                        <option value="solicitante">Solicitante</option>
+                    </select>
                 </div>
             </div>
 
@@ -27,10 +44,7 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="logar">Entrar</button>
-                    <button class="btn btn-secondary" style="float: right; margin-left: 15px">
-                        <a href="<?= base_url('/cadastro/usuario') ?>">Criar cadastro</a>
-                    </button>
+                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="cadastrar">Cadastrar</button>
                 </div>
             </div>
 
@@ -42,15 +56,11 @@
     <script>
         $('form').submit(function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
 
             $.ajax({
-                url: "login/autenticarLogin",
+                url: "cadastrarUsuario",
                 method: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
+                data: $(this).serialize(),
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
@@ -63,7 +73,7 @@
                         return;
                     }
 
-                    window.location.href = '<?= base_url('arealogada/principal') ?>';
+                    window.location.href = '<?= base_url('/login') ?>';
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
