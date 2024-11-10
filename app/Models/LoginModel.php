@@ -2,13 +2,11 @@
 
 namespace app\Models;
 
-use CodeIgniter\Model;
 use Exception;
 use PDO;
 
-class LoginModel extends Model
+class LoginModel
 {
-  private object $ConexaoSQLModel;
 
   private object $con;
 
@@ -16,7 +14,7 @@ class LoginModel extends Model
   {
     $this->ConexaoSQLModel = model('ConexaoSQLModel');
 
-    $this->con = $this->ConexaoSQLModel->conectarAcesso();
+    $this->con = $this->ConexaoSQLModel->conectar();
   }
     public function autenticarLogin(array $data): array
     {
@@ -43,7 +41,7 @@ class LoginModel extends Model
                        loginUsua,
                        nmUsua,
                        tipoCadastro
-                  FROM usuario
+                  FROM acesso.usuario
                  WHERE loginUsua = :loginUsua
                    AND senhaUsua = :senhaUsua
                    AND staUsua = 'A'
@@ -132,7 +130,7 @@ class LoginModel extends Model
             }
 
             $sql = "
-                SELECT 1 FROM usuario WHERE loginUsua = :email
+                SELECT 1 FROM acesso.usuario WHERE loginUsua = :email
             ";
 
             $stmt = $this->con->prepare($sql);
@@ -151,7 +149,7 @@ class LoginModel extends Model
             $senha = md5($data['senha']);
 
             $sql = "
-                INSERT INTO usuario (nmUsua, loginUsua, senhaUsua, staUsua, tipoCadastro, dtIncl)
+                INSERT INTO acesso.usuario (nmUsua, loginUsua, senhaUsua, staUsua, tipoCadastro, dtIncl)
                 VALUES (:nmUsua, :loginUsua, :senhaUsua, 'A', :tipoCadastro, sysdate())
             ";
 

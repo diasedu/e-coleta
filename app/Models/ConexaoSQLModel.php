@@ -6,34 +6,33 @@ use CodeIgniter\Model;
 use Exception;
 use PDO;
 
-class ConexaoSQLModel extends Model
+class ConexaoSQLModel
 {
     public function __construct()
     {
-        
     }
 
-    public function conectarAcesso(): mixed
-    {   
-        try 
+    public function conectar(): mixed
+    {
+        try
         {
-            $host = getenv('ACESSO_HOST');
-            $dbName = getenv('ACESSO_NOME');
-            $user = getenv('ACESSO_USER');
-            $pass = getenv('ACESSO_PASS');
+            $dbHost = getenv('DB_HOST');
+            $dbName = getenv('DB_NAME');
+            $dbUser = getenv('DB_USER');
+            $dbPass = getenv('DB_PASS');
 
-            $con = new PDO("mysql:host={$host};dbname={$dbName}", $user, $pass);
-            
+            $con = new PDO("mysql:host={$dbHost};dbname={$dbName}", $dbUser, $dbPass);
+
+            $con->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+
             return $con;
 
         } catch (Exception $e)
         {
-            return 
-            [
+            return [
                 'level' => 'error',
                 'msg' => $e->getMessage()
             ];
         }
-        
     }
 }

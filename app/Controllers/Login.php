@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\LoginModel;
 use CodeIgniter\Controller;
 
 class Login extends Controller
@@ -18,7 +17,7 @@ class Login extends Controller
     }
 
     public function autenticarLogin()
-    {   
+    {
         $req = $this->request->getPost();
 
         $autenticado = $this->LoginModel->autenticarLogin($req);
@@ -27,7 +26,7 @@ class Login extends Controller
     }
 
     public function cadastrar()
-    {   
+    {
         return view('vw_cadastro');
     }
 

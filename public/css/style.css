@@ -1,0 +1,4 @@
+input[disabled], select[disabled], button[disabled]
+{
+    cursor: not-allowed
+}

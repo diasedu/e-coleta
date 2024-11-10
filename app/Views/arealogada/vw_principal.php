@@ -10,10 +10,10 @@
 
         <div class="card">
             <div class="card-body">
-                This is some text within a card body.
+                <h1>Seja bem-vindo o sistema de solicitação de coleta.</h1>
             </div>
         </div>
-        
+
         <script>
         </script>
     </body>
