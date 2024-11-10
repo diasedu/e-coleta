@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-  <?= view('templates/vw_head', ['titulo' => 'Principal']) ?>
+  <?= view('templates/vw_head', array('titulo' => $titulo)) ?>
 
 <body>
   <?= view('templates/vw_menu') ?>
@@ -46,14 +46,14 @@
     <div class="border border-secondary rounded" style="margin-top: 10px; padding: 20px;" id="info">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button 
-            class="nav-link active" 
-            id="lista-tab" 
-            data-toggle="pill" 
-            data-target="#lista" 
-            type="button" 
-            role="tab" 
-            aria-controls="lista" 
+          <button
+            class="nav-link active"
+            id="lista-tab"
+            data-toggle="pill"
+            data-target="#lista"
+            type="button"
+            role="tab"
+            aria-controls="lista"
             aria-selected="true"
             onclick="habilitarFiltros(); $('form#filtros').submit();"
           >

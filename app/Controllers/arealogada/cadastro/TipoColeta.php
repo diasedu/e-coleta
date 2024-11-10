@@ -7,6 +7,8 @@ class TipoColeta extends Controller
 {
     private $logado;
 
+    public string $titulo;
+
     public function __construct()
     {
         $this->logado = session()->get('logado');
@@ -22,7 +24,7 @@ class TipoColeta extends Controller
 
     public function index(): string
     {
-        return view('arealogada/cadastro/tipo-coleta/vw_principal');
+        return view('arealogada/cadastro/tipo-coleta/vw_principal', array('titulo' => 'Tipo de coleta'));
     }
 
     public function consultar(): void
