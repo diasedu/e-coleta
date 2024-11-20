@@ -37,14 +37,15 @@ class LoginModel
             }
 
             $sql ="
-                SELECT idUsua,
-                       loginUsua,
-                       nmUsua,
-                       tipoCadastro
-                  FROM acesso.usuario
-                 WHERE loginUsua = :loginUsua
-                   AND senhaUsua = :senhaUsua
-                   AND staUsua = 'A'
+                SELECT u.idUsua,
+                       u.loginUsua,
+                       u.nmUsua,
+                       up.id_perfil
+                  FROM usuario u
+                    INNER JOIN usuario_perfil up ON (u.idUsua = up.id_usua)
+                 WHERE u.loginUsua = :loginUsua
+                   AND u.senhaUsua = :senhaUsua
+                   AND u.staUsua = 'A'
             ";
             
             $senha = md5($data['senha']);
@@ -68,8 +69,8 @@ class LoginModel
                 'idUsua' => $dataUsua['idUsua'],
                 'nmUsua' => $dataUsua['nmUsua'],
                 'loginUsua' => $dataUsua['loginUsua'],
-                'tipoCadastro' => $dataUsua['tipoCadastro'],
-                'logado' => true
+                'logado' => true,
+                'id_perfil' => $dataUsua['id_perfil']
             ]);
 
             return [
@@ -130,7 +131,7 @@ class LoginModel
             }
 
             $sql = "
-                SELECT 1 FROM acesso.usuario WHERE loginUsua = :email
+                SELECT 1 FROM usuario WHERE loginUsua = :email
             ";
 
             $stmt = $this->con->prepare($sql);
@@ -149,15 +150,14 @@ class LoginModel
             $senha = md5($data['senha']);
 
             $sql = "
-                INSERT INTO acesso.usuario (nmUsua, loginUsua, senhaUsua, staUsua, tipoCadastro, dtIncl)
-                VALUES (:nmUsua, :loginUsua, :senhaUsua, 'A', :tipoCadastro, sysdate())
+                INSERT INTO usuario (nmUsua, loginUsua, senhaUsua, staUsua, dtIncl)
+                VALUES (:nmUsua, :loginUsua, :senhaUsua, 'A', sysdate())
             ";
 
             $stmt = $this->con->prepare($sql);
             $stmt->bindParam(':nmUsua', $data['nome']);
             $stmt->bindParam(':loginUsua', $data['email']);
             $stmt->bindParam(':senhaUsua', $senha);
-            $stmt->bindParam(':tipoCadastro', $data['tipoCadastro']);
             $stmt->execute();
 
             return [

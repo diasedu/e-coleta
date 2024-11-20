@@ -15,14 +15,23 @@
             <i class="fa-solid fa-house"></i> Início<span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-registered"></i> Cadastros
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= base_url('arealogada/cadastro/tipoColeta') ?>"><i class="fa-solid fa-recycle"></i> Tipo de coleta</a>
-          </div>
-        </li>
+
+        <?php
+          if (session()->get('id_perfil') == 1)
+          { ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-registered"></i> Cadastros
+              </a>
+              
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="<?= base_url('arealogada/cadastro/tipoColeta') ?>"><i class="fa-solid fa-recycle"></i> Tipo de coleta</a>
+                <a class="dropdown-item" href="<?= base_url('arealogada/cadastro/coletor') ?>"><i class="fa-solid fa-recycle"></i> Coletor</a>
+              </div>
+            </li>
+          <?php }
+        ?>
+        
         <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
         </li>
