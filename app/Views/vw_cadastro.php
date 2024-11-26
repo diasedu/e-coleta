@@ -22,16 +22,6 @@
             </div>
 
             <div class="row">
-                <div class="col">
-                    <label for="email" style="display: block; text-align: center;">Tipo</label>
-                    <select name="tipoCadastro" id="tipoCadastro" class="form-control">
-                        <option value="coletor">Coletor</option>
-                        <option value="solicitante">Solicitante</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm">
                     <label for="senha" style="display: block; text-align: center;">Senha</label>
                     <input type="password" class="form-control" id="senha" name="senha" />
@@ -44,7 +34,8 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="cadastrar">Cadastrar</button>
+                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="cadastrar"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
+                    <a href="<?= base_url('/login'); ?>" class="btn btn-secondary" type="" style="float: right; margin-left: 15px"><i class="fa-solid fa-circle-chevron-left"></i> Voltar</a>
                 </div>
             </div>
 

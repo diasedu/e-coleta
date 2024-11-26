@@ -135,6 +135,7 @@ class LoginModel
             ";
 
             $stmt = $this->con->prepare($sql);
+
             $stmt->bindParam(':email', $data['email']);
             $stmt->execute();
             $emailExiste = $stmt->fetch(PDO::FETCH_COLUMN);
@@ -150,7 +151,7 @@ class LoginModel
             $senha = md5($data['senha']);
 
             $sql = "
-                INSERT INTO usuario (nm_usua, login_usua, senha_usua, sta_usua, dtIncl)
+                INSERT INTO usuario (nm_usua, login_usua, senha_usua, sta_usua, dt_incl)
                 VALUES (:nm_usua, :login_usua, :senha_usua, 'A', sysdate())
             ";
 
@@ -158,6 +159,17 @@ class LoginModel
             $stmt->bindParam(':nm_usua', $data['nome']);
             $stmt->bindParam(':login_usua', $data['email']);
             $stmt->bindParam(':senha_usua', $senha);
+            $stmt->execute();
+
+            $id_usua = $this->con->lastInsertId();
+            
+            $sql = "
+                INSERT INTO usuario_perfil (id_usua, id_perfil)
+                VALUES (:id_usua, 2)
+            ";
+
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':id_usua', $id_usua);
             $stmt->execute();
 
             return [
