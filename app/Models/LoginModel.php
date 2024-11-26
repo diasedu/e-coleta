@@ -37,22 +37,22 @@ class LoginModel
             }
 
             $sql ="
-                SELECT u.idUsua,
-                       u.loginUsua,
-                       u.nmUsua,
+                SELECT u.id_usua,
+                       u.login_usua,
+                       u.nm_usua,
                        up.id_perfil
                   FROM usuario u
-                    INNER JOIN usuario_perfil up ON (u.idUsua = up.id_usua)
-                 WHERE u.loginUsua = :loginUsua
-                   AND u.senhaUsua = :senhaUsua
-                   AND u.staUsua = 'A'
+                    INNER JOIN usuario_perfil up ON (u.id_usua = up.id_usua)
+                 WHERE u.login_usua = :login_usua
+                   AND u.senha_usua = :senha_usua
+                   AND u.sta_usua = 'A'
             ";
             
             $senha = md5($data['senha']);
             
             $stmt = $this->con->prepare($sql);
-            $stmt->bindParam(':loginUsua', $data['email']);
-            $stmt->bindParam(':senhaUsua', $senha);
+            $stmt->bindParam(':login_usua', $data['email']);
+            $stmt->bindParam(':senha_usua', $senha);
             $stmt->execute();
 
             $dataUsua = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -66,9 +66,9 @@ class LoginModel
             }
 
             session()->set([
-                'idUsua' => $dataUsua['idUsua'],
-                'nmUsua' => $dataUsua['nmUsua'],
-                'loginUsua' => $dataUsua['loginUsua'],
+                'id_usua' => $dataUsua['id_usua'],
+                'nm_usua' => $dataUsua['nm_usua'],
+                'login_usua' => $dataUsua['login_usua'],
                 'logado' => true,
                 'id_perfil' => $dataUsua['id_perfil']
             ]);
@@ -131,7 +131,7 @@ class LoginModel
             }
 
             $sql = "
-                SELECT 1 FROM usuario WHERE loginUsua = :email
+                SELECT 1 FROM usuario WHERE login_usua = :email
             ";
 
             $stmt = $this->con->prepare($sql);
@@ -150,14 +150,14 @@ class LoginModel
             $senha = md5($data['senha']);
 
             $sql = "
-                INSERT INTO usuario (nmUsua, loginUsua, senhaUsua, staUsua, dtIncl)
-                VALUES (:nmUsua, :loginUsua, :senhaUsua, 'A', sysdate())
+                INSERT INTO usuario (nm_usua, login_usua, senha_usua, sta_usua, dtIncl)
+                VALUES (:nm_usua, :login_usua, :senha_usua, 'A', sysdate())
             ";
 
             $stmt = $this->con->prepare($sql);
-            $stmt->bindParam(':nmUsua', $data['nome']);
-            $stmt->bindParam(':loginUsua', $data['email']);
-            $stmt->bindParam(':senhaUsua', $senha);
+            $stmt->bindParam(':nm_usua', $data['nome']);
+            $stmt->bindParam(':login_usua', $data['email']);
+            $stmt->bindParam(':senha_usua', $senha);
             $stmt->execute();
 
             return [

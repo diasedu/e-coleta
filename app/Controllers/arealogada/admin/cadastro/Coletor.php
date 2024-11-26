@@ -1,9 +1,9 @@
 <?php
-namespace app\Controllers\arealogada\cadastro;
+namespace app\Controllers\arealogada\admin\cadastro;
 
 use CodeIgniter\Controller;
 
-class TipoColeta extends Controller
+class Coletor extends Controller
 {
     private $logado;
 
@@ -19,21 +19,24 @@ class TipoColeta extends Controller
             exit;
         }
 
-        $this->TipoColetaModel = model('arealogada/cadastro/TipoColetaModel');
+        $this->coletorModel = model('arealogada/cadastro/ColetorModel');
     }
 
     public function index(): string
     {
-        return view('arealogada/cadastro/tipo-coleta/vw_principal', array('titulo' => 'Tipo de coleta'));
+        return view('arealogada/cadastro/coletor/vw_principal', array('titulo' => 'Coletor'));
     }
 
     public function consultar(): void
     {
+        $model = model('UsuarioModel');
         $req = $this->request->getPost();
 
-        $data = $this->TipoColetaModel->consultar($req);
+        # Inclui condição para pegar apenas os coletores.
+        $req['filt_tipo_perfil'] = 3;
 
-        $res = view('arealogada/cadastro/tipo-coleta/vw_list', array('data' => $data));
+        $data = $model->consultar($req);
+        $res = view('arealogada/cadastro/coletor/vw_list', array('data' => $data));
 
         echo json_encode(['html' => $res]);
     }
@@ -42,7 +45,7 @@ class TipoColeta extends Controller
     {
         $req = $this->request->getPost();
 
-        $res = $this->TipoColetaModel->inserirAtualizar($req);
+        $res = $this->coletorModel->inserirAtualizar($req);
 
         echo json_encode($res);
     }
@@ -51,7 +54,7 @@ class TipoColeta extends Controller
     {
         $req = $this->request->getPost();
 
-        $res = $this->TipoColetaModel->consultar($req);
+        $res = $this->coletorModel->consultar($req);
 
         $res['registro'] = $res['list'][0];
 
@@ -62,7 +65,7 @@ class TipoColeta extends Controller
     {
         $req = $this->request->getPost();
 
-        $res = $this->TipoColetaModel->excluir($req);
+        $res = $this->coletorModel->excluir($req);
 
         echo json_encode($res);
     }
