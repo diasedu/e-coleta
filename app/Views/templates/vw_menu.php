@@ -32,11 +32,17 @@
               </div>
             </li>
           <?php }
+        
+          if (session()->get('id_perfil') == 2)
+          { ?>
+
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('arealogada/solicitante/ticket') ?>"><i class="fa-solid fa-ticket-simple"></i> Meus tickets</a>
+            </li>
+          <?php
+          }
         ?>
         
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('login/logout') ?>"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
         </li>

@@ -43,3 +43,34 @@ CREATE TABLE usuario_perfil (
 
 INSERT INTO usuario_perfil VALUES (1, 1);
 --
+CREATE TABLE status_ticket (
+	id_sta_ticket INT PRIMARY KEY AUTO_INCREMENT,
+    nm_sta_ticket VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE ticket (
+	id_ticket INT NOT NULL AUTO_INCREMENT,
+    nm_ticket VARCHAR(100) NOT NULL,
+    desc_ticket VARCHAR(2000) NOT NULL,
+    id_sta_ticket INT,
+    dt_incl_ticket DATE NOT NULL,
+    logradouro VARCHAR(200) NOT NULL,
+    cep CHAR(9) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(200),
+    cidade VARCHAR(200) NOT NULL,
+    estado CHAR(2) NOT NULL,
+    preco FLOAT(100, 2),
+    id_usua_coletor INT,
+    id_usua_resp INT NOT NULL,
+    PRIMARY KEY (id_ticket),
+    CONSTRAINT fk_status_ticket FOREIGN KEY (id_sta_ticket) REFERENCES status_ticket (id_sta_ticket),
+    CONSTRAINT fk_usuario_coletor FOREIGN KEY (id_usua_coletor) REFERENCES usuario (id_usua),
+    CONSTRAINT fk_usuario_resp FOREIGN KEY (id_usua_resp) REFERENCES usuario (id_usua)
+);
+
+INSERT INTO status_ticket (nm_sta_ticket)
+VALUES
+	('Enviado para análise'),
+    ('Em andamento'),
+    ('Finalizado');
