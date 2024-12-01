@@ -40,7 +40,7 @@
               <a class="nav-link" href="<?= base_url('arealogada/solicitante/ticket') ?>"><i class="fa-solid fa-ticket-simple"></i> Ticket</a>
             </li>
           <?php
-          }
+          } 
         ?>
         
         <li class="nav-item">
