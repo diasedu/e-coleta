@@ -74,3 +74,12 @@ VALUES
 	('Enviado para análise'),
     ('Em andamento'),
     ('Finalizado');
+
+ALTER TABLE status_ticket
+  ADD sta_ticket CHAR(1);
+--
+UPDATE status_ticket SET sta_ticket = 'A';
+--
+ALTER TABLE status_ticket MODIFY sta_ticket CHAR(1) NOT NULL;
+
+ALTER TABLE ticket ADD bairro VARCHAR(100);

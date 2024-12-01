@@ -123,7 +123,8 @@
             numero: $('#numero').val(),
             complemento: $('#complemento').val(),
             cidade: $('#cidade').val(),
-            uf: $('#uf').val()
+            uf: $('#uf').val(),
+            bairro: $('#bairro').val()
           },
           cache: false,
           beforeSend: function()

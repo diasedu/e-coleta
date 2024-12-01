@@ -37,7 +37,7 @@
           { ?>
 
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('arealogada/solicitante/ticket') ?>"><i class="fa-solid fa-ticket-simple"></i> Meus tickets</a>
+              <a class="nav-link" href="<?= base_url('arealogada/solicitante/ticket') ?>"><i class="fa-solid fa-ticket-simple"></i> Ticket</a>
             </li>
           <?php
           }

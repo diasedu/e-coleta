@@ -112,9 +112,9 @@ class SolicitarColetaModel
 
             $sql = "
                 INSERT INTO ticket 
-                    (nm_ticket, desc_ticket, dt_incl_ticket, logradouro, cep, numero, complemento, cidade, estado, id_usua_resp)
+                    (nm_ticket, desc_ticket, dt_incl_ticket, logradouro, cep, numero, complemento, cidade, estado, id_usua_resp, bairro)
                 VALUES
-                    (:nm_ticket, :desc_ticket, SYSDATE(), :logradouro, :cep, :numero, :complemento, :cidade, :estado, :id_usua_resp)
+                    (:nm_ticket, :desc_ticket, SYSDATE(), :logradouro, :cep, :numero, :complemento, :cidade, :estado, :id_usua_resp, :bairro)
             ";
 
             $stmt = $this->con->prepare($sql);
@@ -127,6 +127,7 @@ class SolicitarColetaModel
             $stmt->bindParam(':cidade', $data['cidade']);
             $stmt->bindParam(':estado', $data['uf']);
             $stmt->bindValue(':id_usua_resp', session()->get('id_usua'));
+            $stmt->bindParam(':bairro', $data['bairro']);
             $stmt->execute();
 
             return [

@@ -45,3 +45,9 @@ $routes->get('/arealogada/solicitante/ticket', 'arealogada\solicitante\Ticket::i
 $routes->get('/arealogada/solicitante/solicitarColeta', 'arealogada\solicitante\SolicitarColeta::index');
 $routes->post('/arealogada/solicitante/solicitarColeta/consultarCep', 'arealogada\solicitante\SolicitarColeta::consultarCep');
 $routes->post('/arealogada/solicitante/solicitarColeta/criarSolicitacao', 'arealogada\solicitante\SolicitarColeta::criarSolicitacao');
+
+# Tela para consultar um ticket.
+$routes->get('/arealogada/solicitante/acompanharSolicitacao', 'arealogada\solicitante\AcompanharSolicitacao::index');
+$routes->post('/arealogada/solicitante/acompanharSolicitacao/consultar', 'arealogada\solicitante\AcompanharSolicitacao::consultar');
+$routes->post('/arealogada/solicitante/acompanharSolicitacao/ver', 'arealogada\solicitante\AcompanharSolicitacao::ver');
+# $routes->post('/arealogada/solicitante/acompanharSolicitacao/criarSolicitacao', 'arealogada\solicitante\AcompanharSolicitacao::criarSolicitacao');
