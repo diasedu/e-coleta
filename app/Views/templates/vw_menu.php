@@ -41,6 +41,15 @@
             </li>
           <?php
           } 
+
+          if (session()->get('id_perfil') == 3)
+          { ?>
+
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('arealogada/coletor/solicitacaoAberta') ?>"><i class="fa-solid fa-hand"></i> Solicitações abertas</a>
+            </li>
+          <?php
+          } 
         ?>
         
         <li class="nav-item">
@@ -48,7 +57,7 @@
         </li>
       </ul>
 
-      <span class="badge badge-light"><?= session()->get('nmUsua') ?></span>
+      <span class="badge badge-light"><?= session()->get('nm_usua') ?></span>
     </div>
   </nav>
   <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

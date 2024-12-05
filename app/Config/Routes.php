@@ -51,3 +51,9 @@ $routes->get('/arealogada/solicitante/acompanharSolicitacao', 'arealogada\solici
 $routes->post('/arealogada/solicitante/acompanharSolicitacao/consultar', 'arealogada\solicitante\AcompanharSolicitacao::consultar');
 $routes->post('/arealogada/solicitante/acompanharSolicitacao/ver', 'arealogada\solicitante\AcompanharSolicitacao::ver');
 # $routes->post('/arealogada/solicitante/acompanharSolicitacao/criarSolicitacao', 'arealogada\solicitante\AcompanharSolicitacao::criarSolicitacao');
+
+# Tela para coletores
+$routes->get('/arealogada/coletor/solicitacaoAberta', 'arealogada\coletor\SolicitacaoAberta::index');
+$routes->post('/arealogada/coletor/solicitacaoAberta/consultar', 'arealogada\coletor\SolicitacaoAberta::consultar');
+$routes->post('/arealogada/coletor/solicitacaoAberta/ver', 'arealogada\coletor\SolicitacaoAberta::ver');
+$routes->post('/arealogada/coletor/solicitacaoAberta/mudarStatus', 'arealogada\coletor\SolicitacaoAberta::mudarStatus');

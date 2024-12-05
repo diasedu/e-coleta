@@ -4,9 +4,71 @@ $(function()
 {
     $('[data-toggle=tooltip').tooltip();
 
-    $('#btnConsult').click(function() {
+    $('#btnConsult').click(function()
+    {
         consultar();
-    })
+    });
+
+    $('#btnGravar').click(function(e)
+    {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'solicitacaoAberta/mudarStatus',
+            data: {
+                id_ticket: $('#id_ticket').val(),
+                id_sta_ticket: $('#id_sta_ticket').val()
+            },
+            cache: false,
+            beforeSend: function()
+            {
+                $(e).prop('disabled', true);
+
+                $('#formMsg').html('<i class="fa-solid fa-spinner fa-spin"></i>');
+            },
+            success: function(jsonRes)
+            {
+                $('#formMsg').html(jsonRes['msg']);
+
+                if (jsonRes['level'] == 'ERROR')
+                {
+                    return;
+                }
+
+                $('#modalRegistro').modal('hide');
+
+                consultar();
+            },
+            error: function(xhr, ajaxOptions, throwError)
+            {
+                console.log(xhr, ajaxOptions, throwError);
+            },
+            complete: function()
+            {
+                $(e).prop('disabled', true);
+            }
+        });
+
+    });
+
+    $('#id_sta_ticket').change(function()
+    {
+        const desativado = ($('#id_sta_ticket').val() == '' ? true : false);
+
+        if (desativado)
+        {
+            const msg = gerarDivWarning('Informe o status para habilitar o botão "Gravar".');
+
+            $('#formMsg').html(msg);
+        } else 
+        {
+            $('#formMsg').html('');
+        }
+
+        $('#btnGravar').prop('disabled', desativado);
+    });
 });
 
 const consultar = function()
@@ -14,7 +76,7 @@ const consultar = function()
     $.ajax({
         type: 'POST',
         dataType: 'html',
-        url: 'acompanharSolicitacao/consultar',
+        url: 'solicitacaoAberta/consultar',
         data: $('form#formFilt').serialize(),
         cache: false,
         beforeSend: function()
@@ -47,7 +109,7 @@ const ver = function(e)
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: 'acompanharSolicitacao/ver',
+        url: 'solicitacaoAberta/ver',
         data: {
             id_ticket: $(e).attr('attr-id_ticket')
         },
@@ -69,9 +131,10 @@ const ver = function(e)
 
             $('#modalRegistro').modal('show');
 
+            $('#id_ticket').val(registro['id_ticket']);
             $('#titulo').val(registro['nm_ticket']);
             $('#descricao').val(registro['desc_ticket']);
-            $('#id-sta_ticket').val(registro['id_sta_ticket'])
+            $('#id_sta_ticket').val(registro['id_sta_ticket']).prop('disabled', false);
             $('#cep').val(registro['cep']);
             $('#logradouro').val(registro['logradouro']);
             $('#bairro').val(registro['bairro']);
@@ -82,6 +145,15 @@ const ver = function(e)
             $('#data').val(registro['dt_html']);
             $('#dif').val(registro['dif']);
 
+            if ($('#id_sta_ticket').val() != '')
+            {
+                $('#btnGravar').prop('disabled', false);
+                $('#formMsg').html('');
+            } else
+            {
+                $('#btnGravar').prop('disabled', true);
+                $('#formMsg').html(gerarDivWarning('Informe o status para habilitar o botão "Gravar".'));
+            }
         },
         error: function(xhr, ajaxOptions, throwError)
         {
@@ -94,6 +166,11 @@ const ver = function(e)
             $(e).html('<i class="fa-solid fa-eye"></i>').prop('disabled', false);
         }
     });
+}
+
+const gerarDivWarning = function(msg)
+{
+    return `<div class="alert alert-warning" role="alert"><i class="fa-solid fa-xmark"></i> ${msg}</div>`;
 }
 
 consultar();
