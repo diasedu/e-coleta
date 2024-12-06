@@ -16,13 +16,6 @@ $routes->get('/arealogada/principal', 'arealogada\Principal::index');
 
 # Abaixo o roteamento para os administradores.
 
-# Tela de cadastro do tipo de coleta.
-$routes->get('/arealogada/admin/cadastro/tipoColeta', 'arealogada\admin\cadastro\TipoColeta::index');
-$routes->post('/arealogada/admin/cadastro/tipoColeta/consultar', 'arealogada\admin\cadastro\TipoColeta::consultar');
-$routes->post('/arealogada/admin/cadastro/tipoColeta/inserirAtualizar', 'arealogada\admin\cadastro\TipoColeta::inserirAtualizar');
-$routes->post('/arealogada/admin/cadastro/tipoColeta/resgataRegistro', 'arealogada\admin\cadastro\TipoColeta::resgataRegistro');
-$routes->post('/arealogada/admin/cadastro/tipoColeta/excluir', 'arealogada\admin\cadastro\TipoColeta::excluir');
-
 # Tela de cadastro dos coletores
 $routes->get('/arealogada/admin/cadastro/coletor', 'arealogada\admin\cadastro\Coletor::index');
 $routes->post('/arealogada/admin/cadastro/coletor/consultar', 'arealogada\admin\cadastro\Coletor::consultar');

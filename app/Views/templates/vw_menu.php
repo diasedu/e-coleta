@@ -27,7 +27,6 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?= base_url('arealogada/admin/cadastro/coletor') ?>"><i class="fa-solid fa-circle-user"></i> Coletor</a>
                 <a class="dropdown-item" href="<?= base_url('arealogada/admin/cadastro/usuarioPerfil') ?>"><i class="fa-solid fa-users-gear"></i> Usuário e perfil</a>
-                <a class="dropdown-item" href="<?= base_url('arealogada/admin/cadastro/tipoColeta') ?>"><i class="fa-solid fa-recycle"></i> Tipo de coleta</a>
                 
               </div>
             </li>
