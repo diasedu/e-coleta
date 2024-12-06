@@ -10,16 +10,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item<?= ($_SERVER['PATH_INFO'] == '/arealogada/principal' ? ' active' : '' ) ?>">
           <a class="nav-link" href="<?= base_url('arealogada/principal') ?>">
-            <i class="fa-solid fa-house"></i> Início<span class="sr-only">(current)</span>
+            <i class="fa-solid fa-house"></i> Início
           </a>
         </li>
 
         <?php
           if (session()->get('id_perfil') == 1)
-          { ?>
-            <li class="nav-item dropdown">
+          { 
+            $listPath = ['/arealogada/admin/cadastro/coletor', '/arealogada/admin/cadastro/usuarioPerfil'];
+            ?>
+            <li class="nav-item dropdown <?= (in_array($_SERVER['PATH_INFO'], $listPath) ? 'active' : '' )?>">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-registered"></i> Cadastros
               </a>
