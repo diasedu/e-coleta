@@ -16,13 +16,6 @@ $routes->get('/arealogada/principal', 'arealogada\Principal::index');
 
 # Abaixo o roteamento para os administradores.
 
-# Tela de cadastro dos coletores
-$routes->get('/arealogada/admin/cadastro/coletor', 'arealogada\admin\cadastro\Coletor::index');
-$routes->post('/arealogada/admin/cadastro/coletor/consultar', 'arealogada\admin\cadastro\Coletor::consultar');
-$routes->post('/arealogada/admin/cadastro/coletor/inserirAtualizar', 'arealogada\admin\cadastro\Coletor::inserirAtualizar');
-$routes->post('/arealogada/admin/cadastro/coletor/resgataRegistro', 'arealogada\admin\cadastro\Coletor::resgataRegistro');
-$routes->post('/arealogada/admin/cadastro/coletor/excluir', 'arealogada\admin\cadastro\Coletor::excluir');
-
 # Tela de cadastro: Vínculo de usuário e tipo de perfil.
 $routes->get('/arealogada/admin/cadastro/usuarioPerfil', 'arealogada\admin\cadastro\UsuarioPerfil::index');
 $routes->post('/arealogada/admin/cadastro/usuarioPerfil/consultar', 'arealogada\admin\cadastro\UsuarioPerfil::consultar');
