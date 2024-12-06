@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="logar">Entrar</button>
-                    <button class="btn btn-secondary" style="float: right; margin-left: 15px">
+                    <button class="btn btn-light" style="float: right; margin-left: 15px">
                         <a href="<?= base_url('/cadastro/usuario') ?>">Criar cadastro</a>
                     </button>
                 </div>
