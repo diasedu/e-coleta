@@ -9,7 +9,14 @@
         <form id="form">
             <div class="row">
                 <div class="col">
-                    <label for="email" style="display: block; text-align: center;">Email</label>
+                    <label for="nome" style="display: block; text-align: center;">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="email" style="display: block; text-align: center;">E-mail</label>
                     <input type="text" class="form-control" id="email" name="email" />
                 </div>
             </div>
@@ -27,18 +34,8 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="logar">Entrar</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-light" style="float: right; margin-left: 15px">
-                        <a href="<?= base_url('/cadastro/usuario') ?>">Cadastro de solicitante</a>
-                    </button>
-                    <button class="btn btn-light" style="float: right; margin-left: 15px">
-                        <a href="<?= base_url('/cadastro/coletor') ?>">Cadastro de coletor</a>
-                    </button>
+                    <button class="btn btn-primary" type="submit" style="float: right; margin-left: 15px" id="cadastrar"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</button>
+                    <a href="<?= base_url('/login'); ?>" class="btn btn-secondary" type="" style="float: right; margin-left: 15px"><i class="fa-solid fa-circle-chevron-left"></i> Voltar</a>
                 </div>
             </div>
 
@@ -50,15 +47,11 @@
     <script>
         $('form').submit(function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
 
             $.ajax({
-                url: "login/autenticarLogin",
+                url: "cadastrarColetor",
                 method: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
+                data: $(this).serialize(),
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
@@ -71,7 +64,7 @@
                         return;
                     }
 
-                    window.location.href = '<?= base_url('arealogada/principal') ?>';
+                    window.location.href = '<?= base_url('/login') ?>';
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);

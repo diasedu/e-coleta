@@ -11,6 +11,7 @@ class Login extends Controller
     {
         $this->LoginModel = model('LoginModel');
     }
+
     public function index(): string
     {
         return view('vw_login');
@@ -37,6 +38,20 @@ class Login extends Controller
         $res = $this->LoginModel->cadastrarUsuario($req);
 
         echo json_encode($res);
+    }
+
+    public function formColetor()
+    {
+        return view('coletor/vw_cadastro');
+    }
+
+    public function cadastrarColetor(): void
+    {
+        $data = $this->request->getPost();
+
+        $response = $this->LoginModel->cadastrarColetor($data);
+
+        echo json_encode($response);
     }
 
     public function logout()
