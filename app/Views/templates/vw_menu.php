@@ -48,6 +48,10 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('arealogada/coletor/solicitacaoAberta') ?>"><i class="fa-solid fa-hand"></i> Solicitações abertas</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('arealogada/coletor/meuAtendimento') ?>"><i class="fa-solid fa-person-walking"></i> Meus atendimentos</a>
+            </li>
           <?php
           } 
         ?>

@@ -53,7 +53,15 @@ $routes->post('/arealogada/solicitante/acompanharSolicitacao/ver', 'arealogada\s
 # $routes->post('/arealogada/solicitante/acompanharSolicitacao/criarSolicitacao', 'arealogada\solicitante\AcompanharSolicitacao::criarSolicitacao');
 
 # Tela para coletores
+
+# Consulta de consulta dos tickets gerais.
 $routes->get('/arealogada/coletor/solicitacaoAberta', 'arealogada\coletor\SolicitacaoAberta::index');
 $routes->post('/arealogada/coletor/solicitacaoAberta/consultar', 'arealogada\coletor\SolicitacaoAberta::consultar');
 $routes->post('/arealogada/coletor/solicitacaoAberta/ver', 'arealogada\coletor\SolicitacaoAberta::ver');
 $routes->post('/arealogada/coletor/solicitacaoAberta/mudarStatus', 'arealogada\coletor\SolicitacaoAberta::mudarStatus');
+
+# Consulta de consulta dos tickets gerais.
+$routes->get('/arealogada/coletor/meuAtendimento', 'arealogada\coletor\MeuAtendimento::index');
+$routes->post('/arealogada/coletor/meuAtendimento/consultar', 'arealogada\coletor\MeuAtendimento::consultar');
+$routes->post('/arealogada/coletor/meuAtendimento/ver', 'arealogada\coletor\MeuAtendimento::ver');
+$routes->post('/arealogada/coletor/meuAtendimento/mudarStatus', 'arealogada\coletor\MeuAtendimento::mudarStatus');
