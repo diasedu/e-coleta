@@ -31,7 +31,7 @@ class SolicitarColetaModel
                 ];
             }
 
-            $url = "https://cdn.apicep.com/file/apicep/{$data['cep']}.json";
+            $url = "https://viacep.com.br/ws/{$data['cep']}/json/";
 
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
@@ -43,20 +43,11 @@ class SolicitarColetaModel
             
             curl_close($curl);
 
-            if ($response['status'] == 404)
-            {
-                return [
-                    'level' => 'ERROR',
-                    'msg' => view('templates/vw_warning', array('msg' => 'Informe um CEP válido.')),
-                    'data' => []
-                ];
-            }
-
             $list = [
-                'logradouro' => $response['address'],
-                'bairro' => $response['district'],
-                'uf' => $response['state'],
-                'cidade' => $response['city']
+                'logradouro' => $response['logradouro'],
+                'bairro' => $response['bairro'],
+                'uf' => $response['uf'],
+                'cidade' => $response['estado']
             ];
             
             return [

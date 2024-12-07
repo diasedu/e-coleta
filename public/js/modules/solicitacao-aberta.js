@@ -16,7 +16,7 @@ $(function()
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: 'acompanharSolicitacao/mudarStatus',
+            url: 'solicitacaoAberta/mudarStatus',
             data: {
                 id_ticket: $('#id_ticket').val(),
                 id_sta_ticket: $('#id_sta_ticket').val()
@@ -76,7 +76,7 @@ const consultar = function()
     $.ajax({
         type: 'POST',
         dataType: 'html',
-        url: 'acompanharSolicitacao/consultar',
+        url: 'solicitacaoAberta/consultar',
         data: $('form#formFilt').serialize(),
         cache: false,
         beforeSend: function()
@@ -109,7 +109,7 @@ const ver = function(e)
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: 'acompanharSolicitacao/ver',
+        url: 'solicitacaoAberta/ver',
         data: {
             id_ticket: $(e).attr('attr-id_ticket')
         },

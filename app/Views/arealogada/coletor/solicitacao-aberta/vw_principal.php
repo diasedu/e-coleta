@@ -192,6 +192,6 @@
     </div>
   </div>
 
-  <script src="<?= base_url('public/js/modules/acompanhar-solicitacao.js') ?>"></script>
+  <script src="<?= base_url('public/js/modules/solicitacao-aberta.js') ?>"></script>
 </body>
 </html>
