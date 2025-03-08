@@ -38,7 +38,7 @@ CREATE TABLE usuario_perfil (
     id_perfil INT NOT NULL,
     PRIMARY KEY(id_usua, id_perfil),
     FOREIGN KEY(id_usua) REFERENCES usuario(id_usua),
-    FOREIGN KEY(id_perfil) REFERENCES perfil(id_usua)
+    FOREIGN KEY(id_perfil) REFERENCES perfil(id_perfil)
 );
 
 INSERT INTO usuario_perfil VALUES (1, 1);
