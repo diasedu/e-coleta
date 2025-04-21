@@ -94,3 +94,6 @@ define('EVENT_PRIORITY_NORMAL', 100);
 define('EVENT_PRIORITY_HIGH', 10);
 
 define('MSG_ERRO', 'Ops, tivemos um problema inesperado. Contate o suporte técnico');
+
+define("ICONE_COLETOR", '<i class="fa-solid fa-recycle"></i>');
+define("ICONE_SOLICITANTE", '<i class="fa-solid fa-user"></i>');
