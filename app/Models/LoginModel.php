@@ -8,10 +8,9 @@ use PDO;
 class LoginModel
 {
 
-  private object $con;
+  protected $con;
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->ConexaoSQLModel = model('ConexaoSQLModel');
 
     $this->con = $this->ConexaoSQLModel->conectar();

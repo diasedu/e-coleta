@@ -15,7 +15,7 @@
       <div class="form-row">
         <div class="col">
           <label for="titulo">Título</label>
-          <input type="text" class="form-control" id="titulo" name="titulo">
+          <input type="text" class="form-control border border-2 border-left-0 border-top-0 border-right-0" id="titulo" name="titulo" maxlength="30" required>
           <small class="form-text text-muted">
             <i class="fa-solid fa-handshake-angle"></i> O título deve conter até 30 caracteres.
           </small>
@@ -26,7 +26,7 @@
       <div class="form-row">
         <div class="col">
           <label for="descricao">Descrição</label>
-          <textarea id="descricao" name="descricao" class="form-control"></textarea>
+          <textarea id="descricao" name="descricao" class="form-control border border-2 border-left-0 border-top-0 border-right-0" maxlength="200" required></textarea>
           <small class="form-text text-muted">
             <i class="fa-solid fa-handshake-angle"></i> Conte mais detalhes sobre a sua situação em até 200 caracteres.
           </small>
@@ -99,15 +99,18 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-success" style="float: right;" id="btnGravar" disabled>
+      <button type="button" class="btn btn-primary mb-2" style="float: right;" id="btnGravar" disabled>
         <i class="fa-solid fa-floppy-disk"></i> Registrar
       </button>
     </form>
   </div>
 
   <script>
-    $(function()
-    {
+    $(function() {
+      $('input, select, textarea').each(function(i, elem) {
+        destacarCamposObrigatorios(elem);
+      });
+      
       $('#btnGravar').click(function()
       {
         $.ajax({
@@ -206,6 +209,14 @@
           $(e).prop('disabled', false);
         }
       });
+    }
+
+    function destacarCamposObrigatorios(elemento) {
+      if (!$(elemento).prop('required')) {
+        return;
+      }
+
+      $(elemento).addClass('border-danger');
     }
   </script>
   
