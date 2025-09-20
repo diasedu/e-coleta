@@ -4,8 +4,7 @@ namespace Config;
 
 use CodeIgniter\Database\Config;
 
-class Database extends Config
-{
+class Database extends Config {
     /**
      * The default connection group name.
      *
@@ -39,4 +38,11 @@ class Database extends Config
         'failover' => [],
         'port'     => 3306,
     ];
+
+    public function __construct() {
+        $this->default['hostname'] = getenv('DB_HOST');
+        $this->default['username'] = getenv('DB_USER');
+        $this->default['password'] = getenv('DB_PASS');
+        $this->default['database'] = getenv('DB_NAME');
+    }
 }
